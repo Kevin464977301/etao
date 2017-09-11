@@ -3,40 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" href="styles/reset.css" />
 		<link rel="stylesheet" href="styles/top.css" />
 		<link rel="stylesheet" href="styles/header-search.css" />
 		<link rel="stylesheet" href="styles/index.css" />
-		<style>
-			/*object{
-				scrollbar-base-color:       #fff;
-				scrollbar-arrow-color:      #fff;
-				scrollbar-track-color:      #fff;
-				scrollbar-3dlight-color:    #fff;
-				scrollbar-highlight-color:  #fff;
-				scrollbar-face-color:       #fff;
-				scrollbar-shadow-color:     #fff;
-				scrollbar-darkshadow-color: #fff;
-			}
-			.top{
-				width: 100%;
-				height: 91px;
-			}
-			.header{
-				width: 100%;
-				height: 300px;
-			}
-			html{
-				width: 100%;
-				height: 100vh;
-			}*/
-		</style>
 	</head>
 	<body>
-		<!--<iframe class="top" src="top.html"></iframe>
-		<iframe class="header" src="header-search.html"></iframe>-->
-		<!--<object type="text/x-scriptlet" data="top.html" width="100%" height="91px"></object>
-		<object type="text/x-scriptlet" data="header-search.html" width="100%" height="113px"></object>-->
-			
 		<!-- 描述：顶部图片区 -->
 		<div class="etao-top">
 			<a href="#">
@@ -48,12 +20,15 @@
 				<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
 				<div class="top-right">
 					<div class="top-login">
-						<span><a style="color: red;" href="#">亲，请登录</a></span> 或 
-						<span><a style="color: black;" href="#">免费注册</a></span>
+						<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 或 
+						<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
+						<a href="#" name="username" class="username"style="color: red;">asdfghjkl1</a>
+						<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
+    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
 					</div>
 					<ul class="top-cat">
-						<li><span>|</span><a style="color: black;" href="#">购物车</a></li>
-						<li><a style="color: black;" href="#">我的订单</a></li>
+						<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
+						<li><a style="color: black;" href="order.html">我的订单</a></li>
 					</ul>
 				</div>
 			</div>
@@ -107,6 +82,12 @@
 						</div>
 					</a>
 				</div>
+			</div>
+		</div>
+		<!-- 商品分类 -->
+		<div class="category">
+			<div class="category-nav">
+				<ul></ul>
 			</div>
 		</div>
 	</body>
