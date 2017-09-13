@@ -2,93 +2,334 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>一淘网</title>
 		<link rel="stylesheet" href="styles/reset.css" />
-		<link rel="stylesheet" href="styles/top.css" />
-		<link rel="stylesheet" href="styles/header-search.css" />
+		<link rel="stylesheet" href="styles/header.css" />
+		<link rel="stylesheet" href="styles/footer.css" />
 		<link rel="stylesheet" href="styles/index.css" />
+		<script type="text/javascript" src="js/animate.js" ></script>
+		<script type="text/javascript" src="js/myajax.js" ></script>
+		<script type="text/javascript" src="js/index.js" ></script>
 	</head>
 	<body>
-		<!-- 描述：顶部图片区 -->
-		<div class="etao-top">
-			<a href="#">
-				<img src="images/TBtop.png" />
-			</a>
-		</div>
-		<div class="etao-top-nav-warp">
-			<div class="etao-top-nav" id="top-nav">
-				<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
-				<div class="top-right">
-					<div class="top-login">
-						<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 或 
-						<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
-						<a href="#" name="username" class="username"style="color: red;">asdfghjkl1</a>
-						<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
-    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
-					</div>
-					<ul class="top-cat">
-						<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
-						<li><a style="color: black;" href="order.html">我的订单</a></li>
-					</ul>
-				</div>
+		<!--头部-->
+		<header>
+			<!-- 描述：顶部图片区 -->
+			<div class="etao-top">
+				<a href="#">
+					<img src="images/TBtop.png" />
+				</a>
 			</div>
-		</div>
-		
-		<!-- 描述：顶部搜索区 -->
-		<div class="search">
-			<div class="search-top">
-				<!-- 描述：头部logo -->
-				<div class="search-logo">
-					<a href="index.html" target="_top">
-						<img src="images/logo.png" />
-					</a>
-				</div>
-				<!-- 描述：搜索框 -->
-				<div class="search-box">
-					<form class="#">
-						<div class="combo-seach">
-							<div class="combo-seach-box">
-								<input class="search-input" placeholder="购物拿返利，手机下单更便捷" />
-							</div>
+			<div class="etao-top-nav-warp">
+				<div class="etao-top-nav" id="top-nav">
+					<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
+					<div class="top-right">
+						<div class="top-login">
+							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 或 
+							<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
+							<a href="#" name="username" class="username"style="color: red;">asdfghjkl1</a>
+							<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
+	    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
 						</div>
-						<div class="search-btn">
-							<input type="submit" class="search-submit" value="" />
-						</div>
-					</form>
-					<div class="search-hot">
-						<ul class="search-hot-list">
-							<li><a href="#">家具</a></li>
-							<li><a href="#">家电</a></li>
-							<li><a href="#">男装</a></li>
-							<li><a href="#">女装</a></li>
-							<li><a href="#">童装</a></li>
-							<li><a href="#">家具</a></li>
-							<li><a href="#">家电</a></li>
-							<li><a href="#">男装</a></li>
-							<li><a href="#">女装</a></li>
-							<li><a href="#">童装</a></li>
-							<li><a href="#">家具</a></li>
-							<li><a href="#">家电</a></li>
-							<li><a href="#">男装</a></li>
-							<li><a href="#">女装</a></li>
+						<ul class="top-cat">
+							<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
+							<li><a style="color: black;" href="order.html">我的订单</a></li>
 						</ul>
 					</div>
 				</div>
-				<div class="search-down">
-					<a href="#">
-						<img src="images/download.png" />
-						<div class="search-down-code">
-							<img src="images/QR_Code.png" />
+			</div>
+			
+			<!-- 描述：顶部搜索区 -->
+			<div class="search">
+				<div class="search-top">
+					<!-- 描述：头部logo -->
+					<div class="search-logo">
+						<a href="index.html" target="_top">
+							<img src="images/logo.png" />
+						</a>
+					</div>
+					<!-- 描述：搜索框 -->
+					<div class="search-box">
+						<form class="#">
+							<div class="combo-seach">
+								<div class="combo-seach-box">
+									<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
+								</div>
+							</div>
+							<div class="search-btn">
+								<input type="submit" class="search-submit" value="" />
+							</div>
+						</form>
+						<div class="search-hot">
+							<ul class="search-hot-list" id="search-hot-list"></ul>
+							<script>show();</script>
 						</div>
-					</a>
+					</div>
+					<div class="search-down">
+						<a href="#">
+							<img src="images/download.png" />
+							<div class="search-down-code">
+								<img src="images/QR_Code.png" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 商品分类 -->
+			<div class="category" id="category">
+				<div class="category-nav">
+					<ul class="category-cat clearfix" id="category-cat"></ul>
+					<script>
+						//商品分类方法调用
+						cats();
+						//吸顶方法调用
+						ceiling();
+					</script>
+				</div>
+			</div>
+		</header>
+		<!-- 轮播图以及登录注册 -->
+		<div class="advert">
+			<div class="advert-carousel">
+				<div class="left-carousel" id="left_carousel">
+					<div class="m-sports" id="m_sports">
+						<ul>
+							<li><a href=""><img src="images/TB1O.jpg" alt=""></a></li>
+			        <li><a href=""><img src="images/TBB1.jpg" alt=""></a></li>
+			        <li><a href=""><img src="images/TBB2.jpg" alt=""></a></li>
+			        <li><a href=""><img src="images/TBB3.jpg" alt=""></a></li>
+						</ul>
+						<script>sports();</script>
+					</div>
+				</div>
+				<div class="among-carousel" id="rolling">
+			    <div class="m-unit" id="m_unit">
+			      <ul>
+			        <li><a href=""><img src="images/TB1.jpg" alt=""></a></li>
+			        <li><a href=""><img src="images/TB2.jpg" alt=""></a></li>
+			        <li><a href=""><img src="images/TB1Z.jpg" alt=""></a></li>
+			        <li><a href=""><img src="images/TB1J.jpg" alt=""></a></li>
+			      </ul>
+			      <script>moves();</script>
+			    </div>
+				</div>
+				<div class="right-carousel">
+					<div class="right-carousel-top">
+						<img src="images/person.png" />
+						<p>立即登录，立即省钱</p>
+						<a href="login.html">用户登录</a>
+						<a href="register.html">新用户注册</a>
+					</div>
+					<span class="cut-off"></span>
+					<div class="right-carousel-bottom">
+						<div>
+							<img src="images/TB1tvc.png" />
+						</div>
+						<img src="images/sign.png" />
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- 商品分类 -->
-		<div class="category">
-			<div class="category-nav">
-				<ul></ul>
+		<div class="advert-bottom">
+			<img src="images/TB1Ea.png" />
+		</div>
+		<!-- 楼层导航板块 -->
+		<div class="leftNav" id="leftNav">
+			<ul>
+				<li>
+					<a href="javascript:;" class="number">1F</a>
+					<a href="javascript:;" class="chinese">热门</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="number">2F</a>
+					<a href="javascript:;" class="chinese">家居</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="number">3F</a>
+					<a href="javascript:;" class="chinese">家具</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="number">4F</a>
+					<a href="javascript:;" class="chinese">文具</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="number">5F</a>
+					<a href="javascript:;" class="chinese">数码</a>
+				</li>
+				<li>
+					<a href="javascript:;" class="number">6F</a>
+					<a href="javascript:;" class="chinese">童装</a>
+				</li>
+				<a href="javascript:;" class="backtotop" id="backtotop">↑顶部</a>
+				<script>backtops();</script>
+			</ul>
+		</div>
+		<!-- 热门商品 -->
+		<div class="goods-hot floor">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">热门商品</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="hot-goods">
+				<ul class="floor-goods" id="hot-good"></ul>
+				<script>hotgoods();</script>
 			</div>
 		</div>
+		<!-- 家居 -->
+		<div class="house floor">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">家居商品</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="house-goods">
+				<ul class="floor-goods" id="house-good"></ul>
+				<script>housegoods();</script>
+			</div>
+		</div>
+		<!-- 家具 -->
+		<div class="furniture floor">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">家具商品</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="furniture-goods">
+				<ul class="floor-goods" id="furniture-good"></ul>
+				<script>furnituregoods();</script>
+			</div>
+		</div>
+		<!-- 文具 -->
+		<div class="stationery floor">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">文具商品</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="stationery-goods">
+				<ul class="floor-goods" id="stationery-good"></ul>
+				<script>stationerygoods();</script>
+			</div>
+		</div>
+		<!-- 数码 -->
+		<div class="figure floor">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">数码产品</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="figure-goods">
+				<ul class="floor-goods" id="figure-good"></ul>
+				<script>figuregoods();</script>
+			</div>
+		</div>
+		<!-- 童装 -->
+		<div class="children floor">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">童装商品</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="children-goods">
+				<ul class="floor-goods" id="children-good"></ul>
+				<script>childrengoods();</script>
+			</div>
+		</div>
+		
+		<!-- 所有商品 -->
+		<div class="all-goods">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">所有商品</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="goods-all">
+				<ul class="allgoods" id="allgoods"></ul>
+				<script>showgoods();</script>
+			</div>
+		</div>
+		<!-- 楼层导航方法 -->
+		<script>floornav();</script>
+		<!--<iframe class="foot-ifrmae" id="foot-ifrmae" scrolling="no" src="footer.html"></iframe>-->
+		<!--底部-->
+		<footer>
+			<div class="foot">
+				<div class="foot-nav">
+					<dl>
+						<dt>关于我们</dt>
+						<dd><a href="#">关于一淘</a></dd>
+						<dd><a href="#">法律声明</a></dd>
+						<dd><a href="#">诚聘英才</a></dd>
+						<dd><a href="#">廉政邮箱</a></dd>
+					</dl>
+					<dl>
+						<dt>帮助中心</dt>
+						<dd><a href="#">新手指南</a></dd>
+						<dd><a href="#">关于返利</a></dd>
+						<dd><a href="#">关于集分宝</a></dd>
+						<dd><a href="#">关于会员特权</a></dd>
+						<dd><a href="#">练习客服</a></dd>
+					</dl>
+					<dl>
+						<dt>手机一淘</dt>
+						<dd>
+							<img src="images/QR_Code.png" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>优惠地图</dt>
+						<dd><a href="#">品牌特卖</a></dd>
+						<dd><a href="#">限时闪购</a></dd>
+					</dl>
+					<dl style="margin-right: 0;">
+						<dt>商家合作</dt>
+						<dd><a href="#">报名入口</a></dd>
+						<dd><a href="#">商家端问题</a></dd>
+					</dl>
+				</div>
+				<div class="foot-link">
+					<div class="foot-link-list">
+						<div class="foot-list">
+							<ul>
+								<li><a href="#">阿里巴巴集团</a></li>
+								<li><a href="#">淘宝网</a></li>
+								<li><a href="#">天猫</a></li>
+								<li><a href="#">聚划算</a></li>
+								<li><a href="#">全球速卖通</a></li>
+								<li><a href="#">阿里巴巴全球交易市场</a></li>
+								<li><a href="#">1688</a></li>
+								<li><a href="#">阿里妈妈</a></li>
+								<li><a href="#">阿里旅行·去啊</a></li>
+								<li><a href="#">YunOS</a></li>
+								<li><a href="#">阿里通信</a></li>
+								<li><a href="#">万网</a></li>
+								<li><a href="#">高德</a></li>
+								<li><a href="#">优视</a></li>
+								<li><a href="#">友盟</a></li>
+								<li><a href="#">酷盘</a></li>
+								<li><a href="#">虾米</a></li>
+								<li><a href="#">天天动听</a></li>
+								<li><a href="#">来往</a></li>
+								<li><a href="#">钉钉</a></li>
+								<li><a href="#">11 Main</a></li>
+								<li><a href="#">支付宝</a></li>
+							</ul>
+						</div>
+						<div class="foot-copy">
+							<span>Copyright &copy; 2010-2017 ETAO.COM 版权所有</span>
+							<span>增值电信业务经营许可证：浙B2-20080224</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>

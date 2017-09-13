@@ -3,8 +3,174 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>商品分类页</title>
+		<link rel="stylesheet" href="styles/reset.css" />
+		<link rel="stylesheet" href="styles/header.css" />
+		<link rel="stylesheet" href="styles/footer.css" />
+		<link rel="stylesheet" href="styles/index.css" />
+		<script type="text/javascript" src="js/animate.js" ></script>
+		<script type="text/javascript" src="js/myajax.js" ></script>
+		<script type="text/javascript" src="js/index.js" ></script>
 	</head>
 	<body>
-		商品分类页
+		<!--头部-->
+		<header>
+			<!-- 描述：顶部图片区 -->
+			<div class="etao-top">
+				<a href="#">
+					<img src="images/TBtop.png" />
+				</a>
+			</div>
+			<div class="etao-top-nav-warp">
+				<div class="etao-top-nav" id="top-nav">
+					<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
+					<div class="top-right">
+						<div class="top-login">
+							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 或 
+							<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
+							<a href="#" name="username" class="username"style="color: red;">asdfghjkl1</a>
+							<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
+	    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
+						</div>
+						<ul class="top-cat">
+							<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
+							<li><a style="color: black;" href="order.html">我的订单</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 描述：顶部搜索区 -->
+			<div class="search">
+				<div class="search-top">
+					<!-- 描述：头部logo -->
+					<div class="search-logo">
+						<a href="index.html" target="_top">
+							<img src="images/logo.png" />
+						</a>
+					</div>
+					<!-- 描述：搜索框 -->
+					<div class="search-box">
+						<form class="#">
+							<div class="combo-seach">
+								<div class="combo-seach-box">
+									<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
+								</div>
+							</div>
+							<div class="search-btn">
+								<input type="submit" class="search-submit" value="" />
+							</div>
+						</form>
+						<div class="search-hot">
+							<ul class="search-hot-list" id="search-hot-list"></ul>
+							<script>show();</script>
+						</div>
+					</div>
+					<div class="search-down">
+						<a href="#">
+							<img src="images/download.png" />
+							<div class="search-down-code">
+								<img src="images/QR_Code.png" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 商品分类 -->
+			<div class="category" id="category">
+				<div class="category-nav">
+					<ul class="category-cat clearfix" id="category-cat"></ul>
+					<script>
+						cats();
+						ceiling();
+					</script>
+				</div>
+			</div>
+		</header>
+		<!-- 商品分类板块 -->
+		<div class="goods-hot floor">
+			<h1 class="goods-category">
+				<a href="#">
+					<span class="goods-category-hot">商品分类</span>
+					<span class="goods-category-special">品牌特卖</span>
+				</a>
+			</h1>
+			<div class="hot-goods">
+				<ul class="floor-goods" id="hot-good"></ul>
+				<script>showclass();</script>
+			</div>
+		</div>
+		<!--<iframe class="foot-ifrmae" id="foot-ifrmae" scrolling="no" src="footer.html"></iframe>-->
+		<!--底部-->
+		<footer>
+			<div class="foot">
+				<div class="foot-nav">
+					<dl>
+						<dt>关于我们</dt>
+						<dd><a href="#">关于一淘</a></dd>
+						<dd><a href="#">法律声明</a></dd>
+						<dd><a href="#">诚聘英才</a></dd>
+						<dd><a href="#">廉政邮箱</a></dd>
+					</dl>
+					<dl>
+						<dt>帮助中心</dt>
+						<dd><a href="#">新手指南</a></dd>
+						<dd><a href="#">关于返利</a></dd>
+						<dd><a href="#">关于集分宝</a></dd>
+						<dd><a href="#">关于会员特权</a></dd>
+						<dd><a href="#">练习客服</a></dd>
+					</dl>
+					<dl>
+						<dt>手机一淘</dt>
+						<dd>
+							<img src="images/QR_Code.png" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>优惠地图</dt>
+						<dd><a href="#">品牌特卖</a></dd>
+						<dd><a href="#">限时闪购</a></dd>
+					</dl>
+					<dl style="margin-right: 0;">
+						<dt>商家合作</dt>
+						<dd><a href="#">报名入口</a></dd>
+						<dd><a href="#">商家端问题</a></dd>
+					</dl>
+				</div>
+				<div class="foot-link">
+					<div class="foot-link-list">
+						<div class="foot-list">
+							<ul>
+								<li><a href="#">阿里巴巴集团</a></li>
+								<li><a href="#">淘宝网</a></li>
+								<li><a href="#">天猫</a></li>
+								<li><a href="#">聚划算</a></li>
+								<li><a href="#">全球速卖通</a></li>
+								<li><a href="#">阿里巴巴全球交易市场</a></li>
+								<li><a href="#">1688</a></li>
+								<li><a href="#">阿里妈妈</a></li>
+								<li><a href="#">阿里旅行·去啊</a></li>
+								<li><a href="#">YunOS</a></li>
+								<li><a href="#">阿里通信</a></li>
+								<li><a href="#">万网</a></li>
+								<li><a href="#">高德</a></li>
+								<li><a href="#">优视</a></li>
+								<li><a href="#">友盟</a></li>
+								<li><a href="#">酷盘</a></li>
+								<li><a href="#">虾米</a></li>
+								<li><a href="#">天天动听</a></li>
+								<li><a href="#">来往</a></li>
+								<li><a href="#">钉钉</a></li>
+								<li><a href="#">11 Main</a></li>
+								<li><a href="#">支付宝</a></li>
+							</ul>
+						</div>
+						<div class="foot-copy">
+							<span>Copyright &copy; 2010-2017 ETAO.COM 版权所有</span>
+							<span>增值电信业务经营许可证：浙B2-20080224</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>

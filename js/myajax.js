@@ -32,7 +32,7 @@
     var queryString = myajax._queryjson2querystring(queryJSON);
     //配置
     //http://h6.duchengjiu.top/shop/api_cat.php?a=1&b=2
-    console.log(queryString);
+    //console.log(queryString);
     xhr.open('GET', URL + "?" + queryString);
     //发送
     xhr.send(null);

@@ -1,0 +1,102 @@
+.smallPic{
+	width: 440px;
+	height: 440px;
+	float: left;
+	position: relative;
+}
+.smallPic .zoom {
+	position: absolute;
+	width: 220px;
+	height: 220px;
+	top: 100px;
+	left: 100px;
+	background-color: #FEDE4F;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	display: none;
+}
+.bigPic {
+	width: 440px;
+	height: 440px;
+	position: absolute;
+	top: 0px;
+	left: 450px;
+	display: none;
+	border: 1px solid #A3A3A3;
+}
+.describe{
+	width: 450px;height: 435px;
+	float: left;
+	margin-right: 20px;
+	padding: 0 0 0 20px;
+}
+.describe h2{
+	font-weight: bold;
+	font-size: 18px;margin: 0 0 5px 8px;
+}
+.describe p{
+	color: #FF0036;
+	font-size: 14px;
+	margin: 0 0 15px 8px;
+}
+.describe .goodsPrice{
+	width: 510px;height: 105px;
+	padding: 15px 0 0 8px;font-size: 12px;
+	color: #999999;margin-bottom: 30px;
+	background: url(../images/price-pic.png) no-repeat;
+}
+.describe .goodsPrice div{
+	width: 450px;height: 20px;line-height: 20px;
+	margin-bottom: 15px;
+}
+.describe .goodsPrice div img{
+	width: 60px;height: 16px;
+}
+.describe .goodsPrice div a{float: right;color: #FF0036;}
+.describe .goodsPrice div span{
+	font-size: 16px;color: black;
+}
+.describe .goodsNumber{
+	width:510px;height:30px;
+	line-height: 30px;
+}
+.describe .goodsNumber input{
+	width: 50px;
+}
+.describe .goodsNumber button{
+	background: #fff;padding: 0;
+	border: 1px solid #CCCCCC;
+	width: 20px;height: 20px;
+}
+.transport{
+	border-top:1px dashed #A3A3A3;
+	border-bottom:1px dashed #A3A3A3;
+	width: 500px;height: 50px;line-height: 50px;
+	margin-bottom: 20px;
+}
+.destination{
+	width:80px;height: 20px;
+	border:0;font-size: 16px;
+}
+
+.addTo{margin: 30px 0 0 8px;}
+.addTo input{
+	font-size: 16px;padding: 0;
+}
+#add-to-order{
+	width:178px;height: 38px;
+	border:1px solid #FF0036;
+	background: #FFEDED;color: #FF0036;
+	margin: 0 20px 0 50px;
+}
+#add-to-cart{
+	width: 180px;height: 40px;
+	background: #FF0036;color: #FFFFFF;
+	border: 0;
+}
+.promise{margin-top: 20px;}
+.promise *{
+	float: left;font-size: 12px;
+	color: #A3A3A3;
+}
+.promise li{margin: 0 0 0 20px ;}

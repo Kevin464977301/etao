@@ -1,10 +1,352 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>商品详情页</title>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="styles/reset.css"/>
+		<link rel="stylesheet" href="styles/index.css" />
+		<link rel="stylesheet" href="styles/header.css" />
+		<link rel="stylesheet" href="styles/footer.css" />
+		<link rel="stylesheet" href="styles/detail.css" />
+		<script type="text/javascript" src="js/myajax.js" ></script>
+		<script type="text/javascript" src="js/animate.js" ></script>
+		<script type="text/javascript" src="js/index.js" ></script>
 	</head>
 	<body>
-		商品详情页
+		<!--头部-->
+		<header>
+			<!-- 描述：顶部图片区 -->
+			<div class="etao-top">
+				<a href="#">
+					<img src="images/TBtop.png" />
+				</a>
+			</div>
+			<div class="etao-top-nav-warp">
+				<div class="etao-top-nav" id="top-nav">
+					<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
+					<div class="top-right">
+						<div class="top-login">
+							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 或 
+							<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
+							<a href="#" name="username" class="username"style="color: red;">asdfghjkl1</a>
+							<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
+	    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
+						</div>
+						<ul class="top-cat">
+							<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
+							<li><a style="color: black;" href="order.html">我的订单</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 描述：顶部搜索区 -->
+			<div class="search">
+				<div class="search-top">
+					<!-- 描述：头部logo -->
+					<div class="search-logo">
+						<a href="index.html" target="_top">
+							<img src="images/logo.png" />
+						</a>
+					</div>
+					<!-- 描述：搜索框 -->
+					<div class="search-box">
+						<form class="#">
+							<div class="combo-seach">
+								<div class="combo-seach-box">
+									<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
+								</div>
+							</div>
+							<div class="search-btn">
+								<input type="submit" class="search-submit" value="" />
+							</div>
+						</form>
+						<div class="search-hot">
+							<ul class="search-hot-list" id="search-hot-list"></ul>
+							<script>show();</script>
+						</div>
+					</div>
+					<div class="search-down">
+						<a href="#">
+							<img src="images/download.png" />
+							<div class="search-down-code">
+								<img src="images/QR_Code.png" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 商品分类 -->
+			<div class="category" id="category">
+				<div class="category-nav">
+					<ul class="category-cat clearfix" id="category-cat"></ul>
+					<script>
+						//商品分类方法调用
+						cats();
+						//吸顶方法调用
+						ceiling();
+					</script>
+				</div>
+			</div>
+		</header>
+		<main>
+			<div style="position: relative;">
+		        <div class="smallPic" id="smallPic">
+		        	<img id="goods_thumb"src="">
+		        	<!--${obj.goods_thumb}-->
+		        	<div id="zoom" class="zoom"></div>
+		        </div>
+		        <div id="bigPic" class="bigPic"></div>
+		        <div class="describe">
+			        <h2 id="goods_name">11111</h2>
+			        <p id="goods_desc">2222</p>
+			        <div class="goodsPrice">
+			        	<div><img src="images/TB1okcBKVXXXXbBXVXXXXXXXXXX-116-32.png">&nbsp;&nbsp;全天猫实物商品通用<a href="#">去刮券</a></div>
+			        	<div>价格:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;¥<span style="text-decoration:line-through" id="price">333</span></div>
+			        	<div>促销价:&nbsp;&nbsp;&nbsp;&nbsp;¥<span style="font-size:20px;color:red" id="promotion">444</span></div>
+			        	
+			        </div>
+			        <div class="transport" >
+			        	&nbsp;运费:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;火星 至
+			        	<select id="destination" class="destination">
+			        		<option>长沙</option><option>北京</option>
+			        		<option>武汉</option><option>西安</option>
+			        		<option>哈尔滨</option>
+			        	</select>
+			        	&nbsp;快递:0.00
+			        </div>
+			        <div class="goodsNumber">
+			        	&nbsp;数量:
+			        	<button id="leftButton">-</button>
+			        	
+			        	<input  id="goods_number"type="Text" value=>
+			        	<button id="rightButton">+</button>
+			        	&nbsp;件
+			        	<span style="font-size:12px;color:#A3A3A3">&nbsp;&nbsp;&nbsp;&nbsp;库存 1500 件</span>
+			        </div>
+			        <div class="addTo">
+			        	<input type="button" id="add-to-order" value="立即购买">
+			        	<input type="button" id="add-to-cart" value="加入购物车"></div>
+			        <ul class="promise">
+			        	<span>服务承诺</span>
+			        	<li><a href="#">正品保证</a></li>
+			        	<li><a href="#">极速退款</a></li>
+			        	<li><a href="#">赠运费险</a></li>
+			        	<li><a href="#">七天无理由退换</a></li>
+			        	<li><a href="#">支付方式</a></li>
+			        </ul>
+			    </div>
+		    </div>
+		</main>
+		<!--底部-->
+		<footer>
+			<div class="foot">
+				<div class="foot-nav">
+					<dl>
+						<dt>关于我们</dt>
+						<dd><a href="#">关于一淘</a></dd>
+						<dd><a href="#">法律声明</a></dd>
+						<dd><a href="#">诚聘英才</a></dd>
+						<dd><a href="#">廉政邮箱</a></dd>
+					</dl>
+					<dl>
+						<dt>帮助中心</dt>
+						<dd><a href="#">新手指南</a></dd>
+						<dd><a href="#">关于返利</a></dd>
+						<dd><a href="#">关于集分宝</a></dd>
+						<dd><a href="#">关于会员特权</a></dd>
+						<dd><a href="#">练习客服</a></dd>
+					</dl>
+					<dl>
+						<dt>手机一淘</dt>
+						<dd>
+							<img src="images/QR_Code.png" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>优惠地图</dt>
+						<dd><a href="#">品牌特卖</a></dd>
+						<dd><a href="#">限时闪购</a></dd>
+					</dl>
+					<dl style="margin-right: 0;">
+						<dt>商家合作</dt>
+						<dd><a href="#">报名入口</a></dd>
+						<dd><a href="#">商家端问题</a></dd>
+					</dl>
+				</div>
+				<div class="foot-link">
+					<div class="foot-link-list">
+						<div class="foot-list">
+							<ul>
+								<li><a href="#">阿里巴巴集团</a></li>
+								<li><a href="#">淘宝网</a></li>
+								<li><a href="#">天猫</a></li>
+								<li><a href="#">聚划算</a></li>
+								<li><a href="#">全球速卖通</a></li>
+								<li><a href="#">阿里巴巴全球交易市场</a></li>
+								<li><a href="#">1688</a></li>
+								<li><a href="#">阿里妈妈</a></li>
+								<li><a href="#">阿里旅行·去啊</a></li>
+								<li><a href="#">YunOS</a></li>
+								<li><a href="#">阿里通信</a></li>
+								<li><a href="#">万网</a></li>
+								<li><a href="#">高德</a></li>
+								<li><a href="#">优视</a></li>
+								<li><a href="#">友盟</a></li>
+								<li><a href="#">酷盘</a></li>
+								<li><a href="#">虾米</a></li>
+								<li><a href="#">天天动听</a></li>
+								<li><a href="#">来往</a></li>
+								<li><a href="#">钉钉</a></li>
+								<li><a href="#">11 Main</a></li>
+								<li><a href="#">支付宝</a></li>
+							</ul>
+						</div>
+						<div class="foot-copy">
+							<span>Copyright &copy; 2010-2017 ETAO.COM 版权所有</span>
+							<span>增值电信业务经营许可证：浙B2-20080224</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script>
+			var oSmallPic = document.querySelector('#smallPic');
+			var oBigPic = document.querySelector("#bigPic");
+			var oZoom = document.querySelector('#zoom');
+			
+			
+			
+			var bigPicWidth = parseFloat(fetchComputedStyle(oBigPic, 'width'));
+			var smallPicWidth = parseFloat(fetchComputedStyle(oSmallPic, 'width'));
+			var zoomWidth = parseFloat(fetchComputedStyle(oZoom, 'width'));
+			var rate = (686 - bigPicWidth) / (smallPicWidth - zoomWidth) ;
+			oSmallPic.onmouseover = function() {
+			    oZoom.style.display = 'block';
+			    oBigPic.style.display = 'block';
+			}
+			oSmallPic.onmouseout = function () {
+			    oZoom.style.display = 'none';
+			    oBigPic.style.display = 'none';
+			}
+			
+			oSmallPic.onmousemove = function(event) {
+			    event = event || window.event;
+			    var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+			    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+			
+			    var x = event.clientX - (getAllLeft(oSmallPic) - scrollLeft) - oZoom.clientWidth / 2;
+			    var y = event.clientY - (getAllTop(oSmallPic) - scrollTop) - oZoom.clientHeight / 2;
+			    if (x < 0) x = 0;
+			    if (y < 0) y = 0;
+			    if (x > oSmallPic.clientWidth - oZoom.clientWidth) {
+			        x = oSmallPic.clientWidth - oZoom.clientWidth;
+			    }
+			    if (y > oSmallPic.clientHeight - oZoom.clientHeight) {
+			        y = oSmallPic.clientHeight - oZoom.clientHeight;
+			    }
+			    oZoom.style.top = y + 'px';
+			    oZoom.style.left = x + 'px';
+			
+			    oBigPic.style.backgroundPosition = -x * rate + 'px ' + -y * rate + 'px';
+			}
+			function fetchComputedStyle(obj, property) {
+			    if (window.getComputedStyle) {
+			        property = property.replace(/[A-Z]/g, function(match){
+			          	return '-' + match.toLowerCase();
+			        });
+			        return window.getComputedStyle(obj)[property]; //中括号里面可以是变量
+			    } else {
+			        property = property.replace(/-([a-z])/g, function(match, $1){
+			          	return $1.toUpperCase();
+			        });
+			        return obj.currentStyle[property];
+			      }
+			    }
+			function getAllTop(obj) {
+			    var allTop = obj.offsetTop;
+			    var currentObj = obj;
+			    while (currentObj = currentObj.offsetParent) {
+			        allTop += currentObj.offsetTop;
+			    }
+			    return allTop;
+			}
+			function getAllLeft(obj) {
+			    var allLeft = obj.offsetLeft;
+			    var currentObj = obj;
+			    while(currentObj = currentObj.offsetParent) {
+			        allLeft += currentObj.offsetLeft;
+			    }
+			    return allLeft;
+			}
+		</script>
+		<script>
+			var oGoods = document.querySelector('#goods');
+    		var goods_id = getQueryString('goods_id');
+    		
+    		var goods_thumb = document.getElementById("goods_thumb");
+    		var goods_name = document.getElementById("goods_name");
+    		var goods_desc = document.getElementById("goods_desc");
+    		var goods_number = document.getElementById("goods_number");
+    		var price = document.getElementById("price");
+    		var promotion = document.getElementById("promotion");
+
+    		
+    		myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {goods_id}, function(err, responseText){
+		      	var json = JSON.parse(responseText);
+		      	var obj = json.data[0];
+		      	goods_thumb.src = obj.goods_thumb;
+		      	goods_name.innerText = obj.goods_name;
+		      	goods_desc.innerText = obj.goods_desc;
+		      	goods_number.value = obj.goods_number;
+		      	price.innerText = obj.price;
+		      	promotion.innerText = obj.price * 0.8;
+		      	
+		      	goods_thumb.style.width = "100%";
+		      	goods_thumb.style.height = "100%"
+		      	oBigPic.style.background = "url("+obj.goods_thumb+")";
+		      	oBigPic.style.backgroundRepeat = "no-repeat";
+		      	oBigPic.style.backgroundSize = "156% 156%";
+    })
+    		document.body.onclick = function(event) {
+      		event = event || window.event;
+      		var target = event.target || event.srcElement;
+	      		if (target.id === 'add-to-cart') {
+	        		if (!localStorage.token) {
+	          			alert('请先登录再购买');
+	          //把当前商品的详细地址存储到localStorage.backurl
+	          			localStorage.backurl = location.href
+	          //跳转到登录页
+	          			location.href = "login.html";
+	          			return;
+	        		}
+	        		console.log('添加到购物车');
+					myajax.post('http://h6.duchengjiu.top/shop/api_cart.php?token='+localStorage.token,{goods_id, number:goods_number.value},function(err, responseText) {
+			          	var json = JSON.parse(responseText);
+			          	console.log(json);
+			          	if (json.code === 0) {
+			            	alert('添加到购物车成功');
+			          }
+	        		})
+	      		}
+    		}
+		</script>
+		<script>
+			var oLeftButton = document.getElementById("leftButton");
+			var oRightButton = document.getElementById("rightButton");
+			
+			oLeftButton.onclick = function () {
+				goods_number.value --;
+				if (goods_number.value < 0) {
+					goods_number.value = 0;
+				}
+			}
+			oRightButton.onclick = function () {
+				goods_number.value ++;
+				if (goods_number.value > 20) {
+					goods_number.value = 20;
+				}
+			}		
+		</script>
 	</body>
 </html>

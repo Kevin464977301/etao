@@ -1,0 +1,318 @@
+body{
+	width: 100%;
+}
+/* 轮播图区域 */
+.advert {
+	width: 100%;
+	height: 340px;
+	background: #ff889e;
+}
+.advert-carousel {
+	width: 1190px;
+	height: 340px;
+	margin: 0 auto;
+	background: orange;
+}
+.left-carousel {
+	float: left;
+	width: 220px;
+	height: 100%;
+	position: relative;
+  overflow: hidden;
+}
+
+.m-sports {
+  /*这是运动的单元*/
+  position: absolute;
+  width: 2000px;
+  top: 0;
+  left: 0;
+}
+.left-carousel ul li {
+  float: left;
+  margin-right: 0;
+}
+.left-carousel ul li img {
+  height: 340px;
+}
+
+/* 轮播图 */
+.among-carousel {
+	float: left;
+	width: 750px;
+	height: 100%;
+	position: relative;
+  overflow: hidden;
+}
+.m-unit {
+  /*这是运动的单元*/
+  position: absolute;
+  width: 5000px;
+  top: 0;
+  left: 0;
+}
+.among-carousel ul li {
+  float: left;
+  margin-right: 0;
+}
+.among-carousel ul li img {
+  height: 340px;
+}
+
+.right-carousel {
+	float: left;
+	width: 180px;
+	height: 100%;
+	padding: 0 20px;
+	background: #fff;
+}
+.right-carousel-top {
+	width: 180px;
+	height: 154px;
+}
+.right-carousel-top img {
+	display: block;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	margin: 15px auto 10px;
+}
+.right-carousel-top p {
+	text-align: center;
+}
+.right-carousel-top a {
+	display: inline-block;
+	text-decoration: none;
+	margin: 13px 2px 0;
+	width: 82px;
+	text-align: center;
+	line-height: 30px;
+	color: #fb3434;
+	border: 1px solid #fb3434;
+	border-radius: 15px;
+}
+.right-carousel-top a:hover {
+	background: #fb3434;
+	color: #fff;
+}
+.cut-off {
+	display: block;
+	width: 180px;
+	height: 1px;
+	background: #f3f3f3;
+}
+.right-carousel-bottom {
+	width: 180px;
+	height: 170px;
+}
+.right-carousel-bottom div {
+	padding-top: 10px;
+}
+.right-carousel-bottom div img {
+	display: block;
+	width: 158px;
+	height: 18px;
+	margin-left: 11px;
+	margin-top: 5px;
+}
+.right-carousel-bottom > img{
+	width: 110px;
+	height: 110px;
+	margin: 10px 35px;
+}
+
+/* 轮播图下方 */
+.advert-bottom {
+	width: 100%;
+	height: 80px;
+}
+.advert-bottom img {
+	display: block;
+	width: 1190px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+/*商品分类 界线样式<h1>*/
+.goods-category {
+	width: 1190px;
+	height: 121px;
+	margin: 0 auto;
+	background: url(../images/TB1-1-1.png) 50% repeat-x;
+	background-color: #f6f6f6;
+}
+.goods-category a {
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	width: 300px;
+	height: 100%;
+	margin: 0 auto;
+	background: url(../images/TBadb.png) 50% no-repeat #f6f6f6;
+}
+.goods-category-hot {
+	display: block;
+	color: red;
+	padding-top: 10px;
+	font-size: 35px;
+	font-weight: bold;
+	line-height: 50px;
+}
+.goods-category-special {
+	display: block;
+	color: #999;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: 30px;
+}
+/* 商品分类样式(热门,家居,家具,文具,数码,童装版块) */
+.floor {
+	width: 100%;
+	height: 831px;
+	background: #F6F6F6;
+}
+
+/* 楼层导航 */
+.leftNav{
+	position: fixed;
+	left: 10px;
+	bottom: 230px;
+	width: 50px;
+}
+.leftNav ul{
+	list-style: none;
+}
+.leftNav ul li{
+	width: 50px;
+	height: 50px;
+	background-color: #FB3434;
+}
+.leftNav ul li a{
+	display: block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+}
+.leftNav ul li a.number{
+	display: block;
+}
+.leftNav ul li a.chinese{
+	display: none;
+	color: white;
+}
+.leftNav ul li.cur a.number{
+	display: none;
+}
+.leftNav ul li.cur a.chinese{
+	display: block;
+}
+.leftNav ul li.cur{
+	background-color: #FB3434;
+	border-top-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+}
+
+/*返回顶部*/
+.backtotop{
+	position: fixed;
+	left: 10px;
+	bottom: 180px;
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 50px;
+	background: #FB3434;
+	border-top-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+}
+.backtotop:hover {
+	text-decoration: none;
+}
+
+/*商品分类显示*/
+.floor-goods {
+	width: 1190px;
+	height: 710px;
+	margin: 0 auto;
+	background: #fff;
+}
+.floor-goods > li {
+	float: left;
+	width: 220px;
+	height: 330px;
+	margin: 10px 7px;
+	border: 2px solid #fff;
+	background: #fff;
+}
+.floor-goods li > a {
+	color: black;
+	text-decoration: none;
+}
+.floor-goods li:hover {
+	border: 2px solid #fb3434;
+}
+.floor-goods li > a > div > img{
+	width: 200px;
+	margin: 10px;
+}
+.goods_name {
+	line-height: 20px;
+	padding: 0 10px;
+	height: 70px;
+}
+.price {
+	color: red;
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+/* 所有商品  */
+.all-goods {
+	width: 100%;
+	height: 100%;
+	background: #f6f6f6;
+}
+.goods-all {
+	width: 1190px;
+	margin: 0 auto;
+	background: #fff;
+}
+.goods-all .allgoods {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+.allgoods > li {
+	float: left;
+	width: 220px;
+	height: 330px;
+	margin: 10px 7px;
+	border: 2px solid #fff;
+	background: #fff;
+}
+.allgoods li > a {
+	color: black;
+	text-decoration: none;
+}
+.allgoods li:hover {
+	border: 2px solid #fb3434;
+}
+.allgoods li > a > div > img{
+	width: 200px;
+	margin: 10px;
+}
+
+
+.foot-ifrmae {
+	width: 1583px;
+	height: 378px;
+}

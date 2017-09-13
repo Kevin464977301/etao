@@ -55,57 +55,6 @@ a {
 a:hover {
   text-decoration: underline;
 }
-header {
-  width: 100%;
-  margin: 0 auto 10px auto;
-  background-color: #ccc;
-}
-header > .header-container {
-  width: 960px;
-  margin: 0 auto;
-}
-header ul.cat {
-  margin-top: 10px;
-  overflow: hidden;
-}
-header ul.cat li a{
-  display: inline-block;
-  width: 70px;
-  background: orange;
-  padding: 5px;
-  text-align: center;
-  color: white;
-}
-header ul.cat li a:hover {
-  background-color: white;;
-  color: orange;
-}
-
-main {
-  width: 960px;
-  margin: 0 auto;
-}
-li.goods {
-  width: 220px;
-  height: 350px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-li.goods:hover {
-  border: 1px solid orange;
-}
-li.goods img {
-  width: 100%;
-}
-li {
-  list-style: none;
-  float: left;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-.username, .register, .login, .logout {
-  display: none;
-}
 table,td {
   border: 1px solid orange;
   padding: 10px;
@@ -119,4 +68,10 @@ table {
 table img {
   border-radius: 50%;
   width: 100px;
+}
+
+main {
+  width: 960px;
+  height: 450px;
+  margin: 10px auto;
 }
