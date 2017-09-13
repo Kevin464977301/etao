@@ -1,5 +1,6 @@
 body{
 	width: 100%;
+	background: #f6f6f6;
 }
 /* 轮播图区域 */
 .advert {
@@ -139,7 +140,6 @@ body{
 	height: 121px;
 	margin: 0 auto;
 	background: url(../images/TB1-1-1.png) 50% repeat-x;
-	background-color: #f6f6f6;
 }
 .goods-category a {
 	text-align: center;
@@ -169,7 +169,6 @@ body{
 .floor {
 	width: 100%;
 	height: 831px;
-	background: #F6F6F6;
 }
 
 /* 楼层导航 */
@@ -279,7 +278,6 @@ body{
 .all-goods {
 	width: 100%;
 	height: 100%;
-	background: #f6f6f6;
 }
 .goods-all {
 	width: 1190px;
