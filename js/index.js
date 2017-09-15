@@ -1,3 +1,19 @@
+/* 登录注册功能 */
+var ologin = function(){
+	if (localStorage.username) {
+		var oUsername = document.querySelector('a[name = username]');
+		var oLogout = document.querySelector('.logout');
+		oUsername.innerText = localStorage.username;
+		oUsername.style.display = 'inline';
+		oLogout.style.display = 'inline';
+	} else{
+		var oRegister = document.querySelector('.register');
+		var oLogin = document.querySelector('.login');
+		oRegister.style.display = 'inline';
+		oLogin.style.display = 'inline';
+	}
+}
+
 /* 楼层导航 */
 var floornav = function(){
 	//左侧导航条的li
@@ -246,7 +262,6 @@ var hotgoods = function() {
 	var oGoods = document.querySelector('#hot-good');
 	myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {}, function(err, responseText){
 		var json = JSON.parse(responseText);
-		console.log(json);
 		var data = json.data;
 		for (var i = 0; i < data.length; i++) {
 			var obj = data[i];
@@ -264,7 +279,6 @@ var  housegoods = function() {
 	var oGoods = document.querySelector('#house-good');
 	myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=45', {},function(error, responseText){
 		var json = JSON.parse(responseText);
-		console.log(json);
 		var data = json.data;
 		for (var i = 0; i < data.length; i++) {
 			var obj = data[i];
@@ -281,7 +295,6 @@ var  furnituregoods = function() {
 	var oGoods = document.querySelector('#furniture-good');
 	myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=55', {},function(error, responseText){
 		var json = JSON.parse(responseText);
-		console.log(json);
 		var data = json.data;
 		for (var i = 0; i < data.length; i++) {
 			var obj = data[i];
@@ -298,7 +311,6 @@ var  stationerygoods = function() {
 	var oGoods = document.querySelector('#stationery-good');
 	myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=62', {},function(error, responseText){
 		var json = JSON.parse(responseText);
-		console.log(json);
 		var data = json.data;
 		for (var i = 0; i < data.length; i++) {
 			var obj = data[i];
@@ -315,7 +327,6 @@ var  figuregoods = function() {
 	var oGoods = document.querySelector('#figure-good');
 	myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=69', {},function(error, responseText){
 		var json = JSON.parse(responseText);
-		console.log(json);
 		var data = json.data;
 		for (var i = 0; i < data.length; i++) {
 			var obj = data[i];
@@ -332,7 +343,6 @@ var childrengoods = function(){
 	var oGoods = document.querySelector('#children-good');
 	myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=125', {},function(error, responseText){
 		var json = JSON.parse(responseText);
-		console.log(json);
 		var data = json.data;
 		for (var i = 0; i < data.length; i++) {
 			var obj = data[i];
@@ -344,75 +354,19 @@ var childrengoods = function(){
 		}
 	});
 }
-/* 获取所有商品 */
+
+/* 获取所有热门商品 */
 var showgoods = function () {
-	var cat_id = getQueryString('cat_id');
+	var cat_id = 125;
+	var pagesize = 20;
 	var oGood1 = document.querySelector('#allgoods');
-  myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=45',{},
+  myajax.get('http://h6.duchengjiu.top/shop/api_goods.php',{cat_id: cat_id, pagesize: pagesize},
   (err,responseText) => {
     var json = JSON.parse(responseText);
-    console.log(json);
     var data = json.data;
     //判断如果没有数据，则显示空的提示
     if (data.length === 0) {
-      oGoods.innerHTML = "<center style='padding-top:100px;color:#999;font-size:30px;'>抱歉,暂时无商品出售,敬请期待!</center>";
-      return;
-    }
-		for (var i = 0; i < data.length; i++) {
-      var obj = data[i];
-			oGood1.innerHTML += `<li><a href="detail.html?goods_id=${obj.goods_id}">
-				<div><img src='${obj.goods_thumb}'/></div>
-				<div class='goods_name'>${obj.goods_name}</div>
-				<div class='price'>¥${obj.price}</div></a>
-			</li>`;
-		}
-  });
-  myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=55',{},
-  (err,responseText) => {
-    var json = JSON.parse(responseText);
-    console.log(json);
-    var data = json.data;
-    //判断如果没有数据，则显示空的提示
-    if (data.length === 0) {
-      oGoods.innerHTML = "<center style='padding-top:100px;color:#999;font-size:30px;'>抱歉,暂时无商品出售,敬请期待!</center>";
-      return;
-    }
-		for (var i = 0; i < data.length; i++) {
-      var obj = data[i];
-			oGood1.innerHTML += `<li><a href="detail.html?goods_id=${obj.goods_id}">
-				<div><img src='${obj.goods_thumb}'/></div>
-				<div class='goods_name'>${obj.goods_name}</div>
-				<div class='price'>¥${obj.price}</div></a>
-			</li>`;
-		}
-  });
-  myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=62',{},
-  (err,responseText) => {
-    var json = JSON.parse(responseText);
-    console.log(json);
-    var data = json.data;
-    //判断如果没有数据，则显示空的提示
-    if (data.length === 0) {
-      oGoods.innerHTML = "<center style='padding-top:100px;color:#999;font-size:30px;'>抱歉,暂时无商品出售,敬请期待!</center>";
-      return;
-    }
-		for (var i = 0; i < data.length; i++) {
-      var obj = data[i];
-			oGood1.innerHTML += `<li><a href="detail.html?goods_id=${obj.goods_id}">
-				<div><img src='${obj.goods_thumb}'/></div>
-				<div class='goods_name'>${obj.goods_name}</div>
-				<div class='price'>¥${obj.price}</div></a>
-			</li>`;
-		}
-  });
-  myajax.get('http://h6.duchengjiu.top/shop/api_goods.php?cat_id=69',{},
-  (err,responseText) => {
-    var json = JSON.parse(responseText);
-    console.log(json);
-    var data = json.data;
-    //判断如果没有数据，则显示空的提示
-    if (data.length === 0) {
-      oGoods.innerHTML = "<center style='padding-top:100px;color:#999;font-size:30px;'>抱歉,暂时无商品出售,敬请期待!</center>";
+      oGood1.innerHTML = "<center style='padding-top:100px;color:#999;font-size:30px;'>抱歉,暂时无商品出售,敬请期待!</center>";
       return;
     }
 		for (var i = 0; i < data.length; i++) {
@@ -434,7 +388,6 @@ var showclass = function () {
   {cat_id: cat_id},
   (err,responseText) => {
     var json = JSON.parse(responseText);
-    console.log(json);
     var data = json.data;
     //判断如果没有数据，则显示空的提示
     if (data.length === 0) {

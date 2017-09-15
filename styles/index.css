@@ -12,7 +12,6 @@ body{
 	width: 1190px;
 	height: 340px;
 	margin: 0 auto;
-	background: orange;
 }
 .left-carousel {
 	float: left;
@@ -126,6 +125,7 @@ body{
 .advert-bottom {
 	width: 100%;
 	height: 80px;
+	background: #fff;
 }
 .advert-bottom img {
 	display: block;
@@ -304,11 +304,23 @@ body{
 .allgoods li:hover {
 	border: 2px solid #fb3434;
 }
-.allgoods li > a > div > img{
+.allgoods li > a > div > img {
 	width: 200px;
 	margin: 10px;
 }
-
+.pages {
+	color: #fff;
+	float: right;
+	width: 60px;
+	height: 30px;
+	margin-top: 10px;
+	outline: none;
+	font-weight: bold;
+	line-height: 30px;
+	border: none;
+	border-radius: 5px;
+	background: #fb3434;
+}
 
 .foot-ifrmae {
 	width: 1583px;

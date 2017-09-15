@@ -1,0 +1,20 @@
+.btnbox{
+	width: 1190px;
+	margin: 0 auto;
+}
+.pagebtn {
+	width: 145px;
+	margin: 10px auto;
+}
+.pagebtn button {
+	color: #fff;
+	width: 60px;
+	height: 30px;
+	margin: 0 5px;
+	outline: none;
+	font-weight: bold;
+	line-height: 30px;
+	border: none;
+	border-radius: 5px;
+	background: #fb3434;
+}

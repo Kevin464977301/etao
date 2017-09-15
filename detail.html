@@ -11,6 +11,8 @@
 		<script type="text/javascript" src="js/myajax.js" ></script>
 		<script type="text/javascript" src="js/animate.js" ></script>
 		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/detail.js" ></script>
+		<script type="text/javascript" src="js/search.js" ></script>
 	</head>
 	<body>
 		<!--头部-->
@@ -26,11 +28,12 @@
 					<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
 					<div class="top-right">
 						<div class="top-login">
-							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 或 
+							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 
 							<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
-							<a href="#" name="username" class="username"style="color: red;">asdfghjkl1</a>
+							<a href="#" name="username" class="username"style="color: red;">aaaaaaaa</a>
 							<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
 	    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
+							<script>ologin();</script>
 						</div>
 						<ul class="top-cat">
 							<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
@@ -51,20 +54,23 @@
 					</div>
 					<!-- 描述：搜索框 -->
 					<div class="search-box">
-						<form class="#">
-							<div class="combo-seach">
-								<div class="combo-seach-box">
-									<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
-								</div>
+						<div class="combo-seach">
+							<div class="combo-seach-box">
+								<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
 							</div>
-							<div class="search-btn">
-								<input type="submit" class="search-submit" value="" />
-							</div>
-						</form>
+						</div>
+						<div class="search-btn" id="searchSubmit">
+							<input type="submit" class="search-submit" value="" />
+							<script>searchtext();</script>
+						</div>
 						<div class="search-hot">
 							<ul class="search-hot-list" id="search-hot-list"></ul>
 							<script>show();</script>
 						</div>
+					</div>
+					<!--自定义搜索候选框-->
+					<div class="search-candidate">
+						<ul id="search-goods"></ul>
 					</div>
 					<div class="search-down">
 						<a href="#">
@@ -119,7 +125,7 @@
 			        	&nbsp;数量:
 			        	<button id="leftButton">-</button>
 			        	
-			        	<input  id="goods_number"type="Text" value=>
+			        	<input  id="goods_number"type="Text" value="1">
 			        	<button id="rightButton">+</button>
 			        	&nbsp;件
 			        	<span style="font-size:12px;color:#A3A3A3">&nbsp;&nbsp;&nbsp;&nbsp;库存 1500 件</span>
@@ -214,9 +220,6 @@
 			var oSmallPic = document.querySelector('#smallPic');
 			var oBigPic = document.querySelector("#bigPic");
 			var oZoom = document.querySelector('#zoom');
-			
-			
-			
 			var bigPicWidth = parseFloat(fetchComputedStyle(oBigPic, 'width'));
 			var smallPicWidth = parseFloat(fetchComputedStyle(oSmallPic, 'width'));
 			var zoomWidth = parseFloat(fetchComputedStyle(oZoom, 'width'));
@@ -289,19 +292,16 @@
     		var goods_desc = document.getElementById("goods_desc");
     		var goods_number = document.getElementById("goods_number");
     		var price = document.getElementById("price");
-    		var promotion = document.getElementById("promotion");
-
-    		
+    		var promotion = document.getElementById("promotion");	
     		myajax.get('http://h6.duchengjiu.top/shop/api_goods.php', {goods_id}, function(err, responseText){
 		      	var json = JSON.parse(responseText);
 		      	var obj = json.data[0];
 		      	goods_thumb.src = obj.goods_thumb;
 		      	goods_name.innerText = obj.goods_name;
 		      	goods_desc.innerText = obj.goods_desc;
-		      	goods_number.value = obj.goods_number;
+//		      	goods_number.value = obj.goods_number;
 		      	price.innerText = obj.price;
-		      	promotion.innerText = obj.price * 0.8;
-		      	
+		      	promotion.innerText = obj.price * 0.8;	
 		      	goods_thumb.style.width = "100%";
 		      	goods_thumb.style.height = "100%"
 		      	oBigPic.style.background = "url("+obj.goods_thumb+")";
@@ -334,7 +334,6 @@
 		<script>
 			var oLeftButton = document.getElementById("leftButton");
 			var oRightButton = document.getElementById("rightButton");
-			
 			oLeftButton.onclick = function () {
 				goods_number.value --;
 				if (goods_number.value < 0) {

@@ -3,8 +3,218 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>我的订单页</title>
+		<link rel="stylesheet" href="styles/reset.css">
+	  <link rel="stylesheet" href="styles/order.css"/>
+	  <link rel="stylesheet" href="styles/header.css" />
+	  <link rel="stylesheet" href="styles/footer.css" />
+	  <script src="js/myajax.js" charset="utf-8"></script>
+	  <script type="text/javascript" src="js/index.js" ></script>
+	  <script type="text/javascript" src="js/animate.js" ></script>
+	  <script type="text/javascript" src="js/search.js" ></script>
+	  <script src="js/order.js"></script>
 	</head>
 	<body>
-		我的订单页
+		<!--头部-->
+		<header>
+			<!-- 描述：顶部图片区 -->
+			<div class="etao-top">
+				<a href="#">
+					<img src="images/TBtop.png" />
+				</a>
+			</div>
+			<div class="etao-top-nav-warp">
+				<div class="etao-top-nav" id="top-nav">
+					<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
+					<div class="top-right">
+						<div class="top-login">
+							<a class="login" name="login" href="login.html">亲，请登录</a> 
+							<a class="register" name="register" href="register.html">免费注册</a>
+							<a href="#" name="username" class="username">aaaaaaaa</a>
+							<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
+	    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
+							<script>ologin();</script>
+						</div>
+						<ul class="top-cat">
+							<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
+							<li><a style="color: black;" href="order.html">我的订单</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 描述：顶部搜索区 -->
+			<div class="search">
+				<div class="search-top">
+					<!-- 描述：头部logo -->
+					<div class="search-logo">
+						<a href="index.html" target="_top">
+							<img src="images/logo.png" />
+						</a>
+					</div>
+					<!-- 描述：搜索框 -->
+					<div class="search-box">
+						<div class="combo-seach">
+							<div class="combo-seach-box">
+								<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
+							</div>
+						</div>
+						<div class="search-btn" id="searchSubmit">
+							<input type="submit" class="search-submit" value="" />
+							<script>searchtext();</script>
+						</div>
+						<div class="search-hot">
+							<ul class="search-hot-list" id="search-hot-list"></ul>
+							<script>show();</script>
+						</div>
+					</div>
+					<!--自定义搜索候选框-->
+					<div class="search-candidate">
+						<ul id="search-goods"></ul>
+					</div>
+					<div class="search-down">
+						<a href="#">
+							<img src="images/download.png" />
+							<div class="search-down-code">
+								<img src="images/QR_Code.png" />
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 商品分类 -->
+			<div class="category" id="category">
+				<div class="category-nav">
+					<ul class="category-cat clearfix" id="category-cat"></ul>
+					<script>
+						//商品分类方法调用
+						cats();
+						//吸顶方法调用
+						ceiling();
+					</script>
+				</div>
+			</div>
+		</header>
+		<main>
+    	<ul id="order"></ul>
+  </main>
+  <script>
+  	var oOrder = document.querySelector('#order');
+		myajax.get('http://h6.duchengjiu.top/shop/api_order.php', {token: localStorage.token}, function(err, responseText){
+		  var json = JSON.parse(responseText);
+		  var data = json.data;
+		  console.log(localStorage.token);
+//		  if (data.length === 0) {
+//		    oOrder.innerHTML = "<h3>您的订单为空</h3>";
+//		    return;
+//		  }
+		  for (var i = 0; i < data.length; i++) {
+		    var obj = data[i];
+		    //遍历商品列表，拼装HTML
+		    var goodsHTML = '';
+		    for (var j = 0; j < obj.goods_list.length; j++) {
+		      var goods = obj.goods_list[j];
+		      goodsHTML += `<div class="order_information">
+		        <img src="${goods.goods_thumb}">
+		        <span>${goods.goods_name}<span>
+		       	 单价：${goods.goods_price}
+		  			数量：${goods.goods_number}
+		  			小计：${goods.goods_price * goods.goods_number}
+		      </div>`;
+		    }
+		    //一件商品的总价
+		    oOrder.innerHTML += `<li>
+		      <div class="title">收货人：${obj.consignee} 总价:${obj.total_prices} <span data-id="${obj.order_id}" class="cancel-order">取消订单</span></div>
+		      <div class="order-goods">${goodsHTML}</div>
+		    </li>`;
+		  }
+		});
+		oOrder.onclick = function(event) {
+		  event = event || window.event;
+		  var target = event.target || event.srcElement;
+		  if (target.className === 'cancel-order') {
+		    if (!confirm('确认要取消订单吗?')) {
+		      return;
+		    }
+		    var order_id = target.dataset.id;
+		    myajax.post('http://h6.duchengjiu.top/shop/api_order.php?token='+localStorage.token+'&status=cancel', {order_id}, function(err, responseText) {
+		      var json = JSON.parse(responseText);
+		      if (json.code === 0) {
+		        alert('订单取消成功');
+		      }
+		    });
+		  }
+		}
+  </script>
+  <footer>
+			<div class="foot">
+				<div class="foot-nav">
+					<dl>
+						<dt>关于我们</dt>
+						<dd><a href="#">关于一淘</a></dd>
+						<dd><a href="#">法律声明</a></dd>
+						<dd><a href="#">诚聘英才</a></dd>
+						<dd><a href="#">廉政邮箱</a></dd>
+					</dl>
+					<dl>
+						<dt>帮助中心</dt>
+						<dd><a href="#">新手指南</a></dd>
+						<dd><a href="#">关于返利</a></dd>
+						<dd><a href="#">关于集分宝</a></dd>
+						<dd><a href="#">关于会员特权</a></dd>
+						<dd><a href="#">练习客服</a></dd>
+					</dl>
+					<dl>
+						<dt>手机一淘</dt>
+						<dd>
+							<img src="images/QR_Code.png" />
+						</dd>
+					</dl>
+					<dl>
+						<dt>优惠地图</dt>
+						<dd><a href="#">品牌特卖</a></dd>
+						<dd><a href="#">限时闪购</a></dd>
+					</dl>
+					<dl style="margin-right: 0;">
+						<dt>商家合作</dt>
+						<dd><a href="#">报名入口</a></dd>
+						<dd><a href="#">商家端问题</a></dd>
+					</dl>
+				</div>
+				<div class="foot-link">
+					<div class="foot-link-list">
+						<div class="foot-list">
+							<ul>
+								<li><a href="#">阿里巴巴集团</a></li>
+								<li><a href="#">淘宝网</a></li>
+								<li><a href="#">天猫</a></li>
+								<li><a href="#">聚划算</a></li>
+								<li><a href="#">全球速卖通</a></li>
+								<li><a href="#">阿里巴巴全球交易市场</a></li>
+								<li><a href="#">1688</a></li>
+								<li><a href="#">阿里妈妈</a></li>
+								<li><a href="#">阿里旅行·去啊</a></li>
+								<li><a href="#">YunOS</a></li>
+								<li><a href="#">阿里通信</a></li>
+								<li><a href="#">万网</a></li>
+								<li><a href="#">高德</a></li>
+								<li><a href="#">优视</a></li>
+								<li><a href="#">友盟</a></li>
+								<li><a href="#">酷盘</a></li>
+								<li><a href="#">虾米</a></li>
+								<li><a href="#">天天动听</a></li>
+								<li><a href="#">来往</a></li>
+								<li><a href="#">钉钉</a></li>
+								<li><a href="#">11 Main</a></li>
+								<li><a href="#">支付宝</a></li>
+							</ul>
+						</div>
+						<div class="foot-copy">
+							<span>Copyright &copy; 2010-2017 ETAO.COM 版权所有</span>
+							<span>增值电信业务经营许可证：浙B2-20080224</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>

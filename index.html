@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="js/animate.js" ></script>
 		<script type="text/javascript" src="js/myajax.js" ></script>
 		<script type="text/javascript" src="js/index.js" ></script>
+		<script type="text/javascript" src="js/search.js" ></script>
 	</head>
 	<body>
 		<!--头部-->
@@ -25,11 +26,25 @@
 					<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
 					<div class="top-right">
 						<div class="top-login">
-							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 或 
+							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 
 							<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
-							<a href="#" name="username" class="username"style="color: red;">asdfghjkl1</a>
+							<a href="#" name="username" class="username"style="color: red;">aaaaaaaa</a>
 							<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
 	    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
+							<script>
+								if (localStorage.username) {
+		var oUsername = document.querySelector('a[name = username]');
+		var oLogout = document.querySelector('.logout');
+		oUsername.innerText = localStorage.username;
+		oUsername.style.display = 'inline';
+		oLogout.style.display = 'inline';
+	} else{
+		var oRegister = document.querySelector('.register');
+		var oLogin = document.querySelector('.login');
+		oRegister.style.display = 'inline';
+		oLogin.style.display = 'inline';
+	}
+							</script>
 						</div>
 						<ul class="top-cat">
 							<li><span>|</span><a style="color: black;" href="cart.html">购物车</a></li>
@@ -50,20 +65,23 @@
 					</div>
 					<!-- 描述：搜索框 -->
 					<div class="search-box">
-						<form class="#">
-							<div class="combo-seach">
-								<div class="combo-seach-box">
-									<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
-								</div>
+						<div class="combo-seach">
+							<div class="combo-seach-box">
+								<input id="search" class="search-input" placeholder="购物拿返利，手机下单更便捷" />
 							</div>
-							<div class="search-btn">
-								<input type="submit" class="search-submit" value="" />
-							</div>
-						</form>
+						</div>
+						<div class="search-btn" id="searchSubmit">
+							<input type="submit" class="search-submit" value="" />
+							<script>searchtext();</script>
+						</div>
 						<div class="search-hot">
 							<ul class="search-hot-list" id="search-hot-list"></ul>
 							<script>show();</script>
 						</div>
+					</div>
+					<!--自定义搜索候选框-->
+					<div class="search-candidate">
+						<ul id="search-goods"></ul>
 					</div>
 					<div class="search-down">
 						<a href="#">
@@ -247,13 +265,53 @@
 		<div class="all-goods">
 			<h1 class="goods-category">
 				<a href="#">
-					<span class="goods-category-hot">所有商品</span>
+					<span class="goods-category-hot">热销商品</span>
 					<span class="goods-category-special">品牌特卖</span>
 				</a>
 			</h1>
 			<div class="goods-all">
 				<ul class="allgoods" id="allgoods"></ul>
 				<script>showgoods();</script>
+				<button class="pages" id="pages" value="1">MORE</button>
+				<script>
+					var oInputs = document.querySelector('#pages');
+					oInputs.addEventListener('click',function(event){
+						event = event|| window.event;
+						var val = parseInt(this.value);
+						var num;
+						num = ++val;
+						oInputs.value = num;
+						var cat_id = 45;
+						var pagesize = 20;
+						var page = getQueryString('page');
+						var oGood1 = document.querySelector('#allgoods');
+					  myajax.get('http://h6.duchengjiu.top/shop/api_goods.php',{ cat_id: cat_id, pagesize: pagesize, page: num},
+					  (err,responseText) => {
+					    var json = JSON.parse(responseText);
+					    var data = json.data;
+					    //商品总数
+					    var pages = json.page.count;
+//					    console.log(pages);
+					    //页面数量
+					    var pagecount = parseInt(pages/pagesize); 
+					    if(pages%pagesize != 0){
+					    	pagecount = pagecount + 1;
+					    }
+					    //判断如果没有数据，则显示空的提示
+					    if (data.length === 0) {
+					      return;
+					    }
+					    for (var i = 0; i < data.length; i++) {
+					      var obj = data[i];
+								oGood1.innerHTML += `<li><a href="detail.html?goods_id=${obj.goods_id}">
+									<div><img src='${obj.goods_thumb}'/></div>
+									<div class='goods_name'>${obj.goods_name}</div>
+									<div class='price'>¥${obj.price}</div></a>
+								</li>`;
+					    }
+					  });
+					});
+				</script>
 			</div>
 		</div>
 		<!-- 楼层导航方法 -->

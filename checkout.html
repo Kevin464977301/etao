@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>商品分类页</title>
-		<link rel="stylesheet" href="styles/reset.css" />
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="styles/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="styles/modal.css"/>
+		<link rel="stylesheet" type="text/css" href="styles/checkout.css"/>
 		<link rel="stylesheet" href="styles/header.css" />
 		<link rel="stylesheet" href="styles/footer.css" />
-		<link rel="stylesheet" href="styles/index.css" />
-		<link rel="stylesheet" href="styles/classification.css" />
-		<script type="text/javascript" src="js/animate.js" ></script>
+		<script src="js/animate.js" charset="utf-8"></script>
 		<script type="text/javascript" src="js/myajax.js" ></script>
 		<script type="text/javascript" src="js/index.js" ></script>
 		<script type="text/javascript" src="js/search.js" ></script>
-		<script type="text/javascript" src="js/classification.js" ></script>
 	</head>
 	<body>
 		<!--头部-->
@@ -28,9 +27,9 @@
 					<div class="top-tip">欢迎来到一淘网，阿里巴巴旗下生活省钱利器！</div>
 					<div class="top-right">
 						<div class="top-login">
-							<a class="login" name="login" style="color: red;" href="login.html">亲，请登录</a> 
-							<a class="register" name="register" style="color: black;" href="register.html">免费注册</a>
-							<a href="#" name="username" class="username"style="color: red;">aaaaaaaa</a>
+							<a class="login" name="login" href="login.html">亲，请登录</a> 
+							<a class="register" name="register" href="register.html">免费注册</a>
+							<a href="#" name="username" class="username">aaaaaaaa</a>
 							<!-- 可以在a链接里面写javascript代码，在href属性中以javascript:开头，后面写js代码 -->
 	    				<a class="logout"style="color: black;" href="javascript:localStorage.clear(); location.reload();">退出</a>
 							<script>ologin();</script>
@@ -95,29 +94,86 @@
 				</div>
 			</div>
 		</header>
-		<!-- 商品分类板块 -->
-		<div class="goods-hot floor">
-			<h1 class="goods-category">
-				<a href="#">
-					<span class="goods-category-hot">商品分类</span>
-					<span class="goods-category-special">品牌特卖</span>
-				</a>
-			</h1>
-			<div class="hot-goods">
-				<ul class="floor-goods" id="hot-good"></ul>
-				<script>showclass();</script>
-				<div class="btnbox">
-					<div class="pagebtn">
-						<button id="btnUp">上一页</button>
-						<button id="btnDn">下一页</button>
-					</div>
-				</div>
-				<script>changepage();</script>
+		<div class="checkMain">
+			<div class="address_confirm">
+				<h2>选择收货地址</h2>
+				<ul class="address-ul"></ul>
+				<div class="show-all-address">显示全部地址</div>
+				<div type="button" id="add-address" class="add-address">添加收货地址</div>
+      	<script>
+	        var oShowAllAddress = document.querySelector('.show-all-address');
+	        oShowAllAddress.addEventListener('click', function(){
+          	var oAddressUl = document.querySelector('.address-ul');
+          	var overflow = fetchComputedStyle(oAddressUl, 'overflow');
+          	var flag = overflow === 'hidden' ? false : true;
+          	oAddressUl.style.overflow = !flag ? 'visible' : 'hidden';
+          	this.innerText = flag ? '显示全部地址' : '隐藏地址';
+	        });
+      	</script>
+			</div>
+			<div class="order_confirm">
+				<h2>确认订单信息</h2>
+				<table>
+					<thead>
+						<tr>
+							<td>商品信息</td>
+							<td>单价</td>
+							<td>数量</td>
+							<td>小计</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+			<p>合计（不含运费）：<span id="cart_goodsSum" class="cart_number">0.00</span></p>
+			<div class="check_bottom">
+				<div class="last_confirm" id="last_confirm"></div>
+				<input id="order_submit" class="order_submit" type="button" value="提交订单" />
 			</div>
 		</div>
-		<!--<iframe class="foot-ifrmae" id="foot-ifrmae" scrolling="no" src="footer.html"></iframe>-->
-		<!--底部-->
-		<footer>
+		<div class="modal register">
+	    <div class="container">
+	      <div class="hd">添加收货地址<span class="close">关闭</span></div>
+	      <div class="bd">
+	        <form>
+	          <label>
+	            地址名称: <input type="text" name="address_name" value="家">
+	          </label>
+	          <label>
+	            收货人: <input type="text" name="consignee" value="maxwelldu">
+	          </label>
+	          <label>
+	            国家: <input type="text" name="country" value="中国">
+	          </label>
+	          <label>
+	            省: <input type="text" name="province" value="北京">
+	          </label>
+	          <label>
+	            市: <input type="text" name="city" value="北京">
+	          </label>
+	          <label>
+	            区: <input type="text" name="district" value="石景山">
+	          </label>
+	          <label>
+	            地址: <input type="text" name="address" value="实兴东街11号朗诚大厦南楼二层">
+	          </label>
+	          <label>
+	            邮编: <input type="text" name="zip_code" value="100000">
+	          </label>
+	          <label>
+	            手机号: <input type="text" name="mobile" value="18518368050">
+	          </label>
+	          <label>
+	            电话: <input type="text" name="tel" value="010-91519281">
+	          </label>
+	          <label class="submit">
+	            <input type="button" value="添加" class="add">
+	          </label>
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	  <footer>
 			<div class="foot">
 				<div class="foot-nav">
 					<dl>
@@ -188,5 +244,8 @@
 				</div>
 			</div>
 		</footer>
+	  <script src="js/modal.js" charset="utf-8"></script>
+	  <script src="js/myajax.js" charset="utf-8"></script>
+	  <script src="js/checkout.js" charset="utf-8"></script>
 	</body>
 </html>
